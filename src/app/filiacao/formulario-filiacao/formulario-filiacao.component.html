@@ -1,0 +1,42 @@
+<mat-card>
+  <mat-card-header>
+    <h1>Formulário Filiação</h1>
+  </mat-card-header>
+  <mat-card-content>
+    <prv-message type="warning" *ngIf="filiacaoFacade.erro$ | async as mensagemErro">
+      <div class="text">
+        <div class="linha">{{ mensagemErro }}</div>
+      </div>
+    </prv-message>
+    <prv-message type="warning" *ngIf="filiacaoFacade.respostaGravacao$ | async as mensagemSucesso">
+      <div class="text">
+        <div class="linha">{{ mensagemSucesso }}</div>
+      </div>
+    </prv-message>
+    <section class="section_formulario_filiacao" fxLayout="column" fxLayoutAlign="space-between stretch">
+      <mat-form-field>
+        <input matInput placeholder="Digite seu nome" [(ngModel)]="nome">
+      </mat-form-field>
+      <mat-form-field>
+        <input matInput placeholder="Digite seu CPF" [(ngModel)]="CPF">
+      </mat-form-field>
+      <mat-form-field>
+        <input matInput type="date" placeholder="Data de nascimento" [(ngModel)]="dataNascimento">
+      </mat-form-field>
+      <mat-form-field>
+        <input matInput type="email" placeholder="Digite seu email" [(ngModel)]="email">
+      </mat-form-field>
+      <mat-form-field>
+        <input matInput type="tel" placeholder="Digite seu telefone" [(ngModel)]="telefone">
+      </mat-form-field>
+    </section>
+  </mat-card-content>
+  <mat-card-actions>
+    <button mat-mini-fab (click)="salvarParticipante()">
+      <mat-icon>done</mat-icon>
+    </button>
+    <button mat-mini-fab color="warn" (click)="limparFormulario()">
+      <mat-icon>clear</mat-icon>
+    </button>
+  </mat-card-actions>
+</mat-card>

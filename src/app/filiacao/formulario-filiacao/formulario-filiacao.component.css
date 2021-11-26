@@ -1,0 +1,12 @@
+.section_formulario_filiacao {
+  display: inline-flex;
+  flex-direction: column;
+}
+
+mat-card {
+  margin: 100px;
+}
+
+button {
+ margin-left: 20px;
+}
