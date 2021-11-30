@@ -6,8 +6,9 @@ import { MatInputModule } from '@angular/material/input';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MessageModule } from '../shared/message/message/message.module';
+
 
 @NgModule({
   declarations: [
@@ -21,7 +22,8 @@ import { MessageModule } from '../shared/message/message/message.module';
     MatButtonModule,
     MatIconModule,
     FormsModule,
-    MessageModule
+    MessageModule,
+    ReactiveFormsModule
   ],
   exports: [
     FormularioFiliacaoComponent

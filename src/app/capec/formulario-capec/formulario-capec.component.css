@@ -1,4 +1,4 @@
-.section_formulario_filiacao {
+.section_formulario_capec {
   display: inline-flex;
   flex-direction: column;
 }
@@ -11,7 +11,7 @@ button {
  margin-left: 20px;
 }
 
-.participante {
+.beneficiario {
   padding: 20px;
   margin: 20px;
   border-radius: 10px;

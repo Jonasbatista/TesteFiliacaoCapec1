@@ -1,13 +1,13 @@
 import { Injectable } from '@angular/core';
 import { Action } from 'src/app/shared/models/action';
-import { FiliacaoActionsType } from './filiacao.actions';
-import { FiliacaoService } from './filiacao.service';
+import { CapecActionsType } from './capec.actions';
+import { CapecService } from './capec.service';
 import { RespostaGravacao } from '../models/resposta-gravacao';
 import { HttpErrorResponse } from '@angular/common/http';
 import { BehaviorSubject } from 'rxjs';
 import { map } from 'rxjs/operators';
 
-class FiliacaoState {
+class PlanoCapecState {
   carregando!: boolean;
   resposta!: RespostaGravacao;
   erro!: string;
@@ -16,12 +16,12 @@ class FiliacaoState {
 @Injectable({
   providedIn: 'root'
 })
-export class FiliacaoFacade {
+export class CapecFacade {
 
-  private state = new FiliacaoState();
-  private behavior = new BehaviorSubject<FiliacaoState>(this.state);
+  private state = new PlanoCapecState();
+  private behavior = new BehaviorSubject<PlanoCapecState>(this.state);
 
-  constructor(private filiacaoService: FiliacaoService) { }
+  constructor(private capecService: CapecService) { }
 
   erro$ = this.behavior.asObservable().pipe(
     map(state => state.erro)
@@ -33,8 +33,8 @@ export class FiliacaoFacade {
 
   dispatch(action: Action) {
     switch (action.type) {
-      case FiliacaoActionsType.FILIACAO_GRAVACAO:
-        this.filiacaoService.postParticipante(action.payload.formulario).subscribe({
+      case CapecActionsType.CAPEC_GRAVACAO:
+        this.capecService.postBeneficiario(action.payload.formulario).subscribe({
           next: resposta => {
             if (resposta.erros) {
               this.behavior.next({

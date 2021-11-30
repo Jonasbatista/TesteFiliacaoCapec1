@@ -1,5 +1,5 @@
 
-export interface Participante {
+export interface FormularioParticipante {
   nome: string,
   CPF: string,
   dataNascimento: Date,

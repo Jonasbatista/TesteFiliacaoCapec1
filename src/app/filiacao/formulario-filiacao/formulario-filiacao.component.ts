@@ -1,9 +1,9 @@
 
-import { Component, OnInit } from '@angular/core';
-import { Participante } from '../models/participante';
-
+import { Component, OnInit, ViewChild } from '@angular/core';
+import { FormularioParticipante } from '../models/participante';
 import { FiliacaoFacade } from '../services/filiacao.facade';
 import { GravaFiliacao, ErroGravaFiliacao } from '../services/filiacao.actions';
+import { FormBuilder, FormGroup, Validators, FormGroupDirective } from '@angular/forms';
 
 @Component({
   selector: 'app-formulario-filiacao',
@@ -12,42 +12,45 @@ import { GravaFiliacao, ErroGravaFiliacao } from '../services/filiacao.actions';
 })
 export class FormularioFiliacaoComponent implements OnInit {
 
-  participante!: Participante;
+  @ViewChild('formParticipante') formParticipante!: FormGroupDirective;
 
-  nome!: string;
-  CPF!: string;
-  dataNascimento!: Date;
-  email!: string;
-  telefone!: string;
+  formularioParticipante: FormGroup;
 
-  constructor(public filiacaoFacade: FiliacaoFacade) { }
+  constructor(public filiacaoFacade: FiliacaoFacade, private fb: FormBuilder) {
+
+    this.formularioParticipante = this.fb.group({
+      nome: ['', [Validators.required, Validators.minLength(5)]],
+      cpf: ['', [Validators.required]],
+      dataNascimento: ['', [Validators.required]],
+      email: ['', [Validators.required, Validators.email]],
+      telefone: ['', [Validators.required]]
+
+    });
+  }
 
   ngOnInit(): void {
   }
 
-  salvarParticipante() {
+  submit() {
 
-    let participante: Participante = {
-      nome: this.nome,
-      CPF: this.CPF,
-      dataNascimento: this.dataNascimento,
-      email: this.email,
-      telefone: this.telefone
+    let formulario: FormularioParticipante = {
+      nome: this.formularioParticipante.value.nome,
+      CPF: this.formularioParticipante.value.cpf,
+      dataNascimento: this.formularioParticipante.value.dataNascimento,
+      email: this.formularioParticipante.value.email,
+      telefone: this.formularioParticipante.value.telefone
     }
 
-    this.filiacaoFacade.dispatch(new GravaFiliacao({ participante }));
+    console.log(formulario);
+    this.filiacaoFacade.dispatch(new GravaFiliacao({ formulario }));
 
     this.limparFormulario();
 
   }
 
   limparFormulario() {
-    this.nome = '';
-    this.CPF = '';
-    this.dataNascimento = new Date;
-    this.email = '';
-    this.telefone = '';
-
+    this.formularioParticipante.reset();
+    this.formParticipante.resetForm();
   }
 
 }

@@ -1,5 +1,5 @@
 import { Action } from 'src/app/shared/models/action';
-import { Participante } from '../models/participante';
+import { FormularioParticipante } from '../models/participante';
 
 export enum FiliacaoActionsType {
   FILIACAO_GRAVACAO = '[Filiacao - Gravacao] Grava participante na tabela temporaria',
@@ -7,7 +7,7 @@ export enum FiliacaoActionsType {
 }
 
 export class GravaFiliacao extends Action {
-  constructor(payload: { participante: Participante }) {
+  constructor(payload: { formulario: FormularioParticipante }) {
     super(FiliacaoActionsType.FILIACAO_GRAVACAO, payload)
   }
 

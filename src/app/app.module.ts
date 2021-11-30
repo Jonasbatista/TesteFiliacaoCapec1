@@ -6,7 +6,10 @@ import { HttpClientModule } from '@angular/common/http';
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FiliacaoModule } from './filiacao/filiacao.module';
-
+import { CapecModule } from './capec/capec.module';
+import { MatToolbarModule } from '@angular/material/toolbar';
+import { AppRoutingModule } from './app.routing.module';
+import { MatButtonModule } from '@angular/material/button';
 
 @NgModule({
   declarations: [
@@ -16,7 +19,11 @@ import { FiliacaoModule } from './filiacao/filiacao.module';
     BrowserModule,
     BrowserAnimationsModule,
     FiliacaoModule,
-    HttpClientModule
+    HttpClientModule,
+    CapecModule,
+    MatToolbarModule,
+    AppRoutingModule,
+    MatButtonModule
 
   ],
   providers: [],
